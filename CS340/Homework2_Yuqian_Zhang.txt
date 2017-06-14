@@ -1,0 +1,224 @@
+﻿//CS340 - Yuqian Zhang CUNY ID:23321201
+
+Part  A
+1.Get a listing of your root directory. 
+[zhyu1201@venus ~]$ ls
+assignment01.cpp               cube.cpp
+assignment02.cpp               d8.cpp
+assignment04.cpp               ex1.cpp
+assignment05.cpp               excercise1.cpp
+assignment06.cpp               exercise1.cp
+
+2.Go to /bin directory
+[zhyu1201@venus ~]$ cd /bin
+[zhyu1201@venus bin]$
+
+3.List its contents
+[zhyu1201@venus bin]$ ls 
+
+4.List 6 commands that you recognize
+login                                withsctp
+list_titles                          wc
+host                                 stapsh
+hostid                               start-pulseaudio-kde
+hostname                             start-pulseaudio-x11
+id                                   syndaemon
+
+5.Get a listing of the device directory. Do you recognize any device?
+[zhyu1201@venus ~]$ cd /dev
+[zhyu1201@venus dev]$ ls 
+autofs           lp1                 tty1   tty39  ttyS1
+block            lp2                 tty10  tty4   ttyS2
+bsg              lp3                 tty11  tty40  ttyS3
+btrfs-control    mapper              tty12  tty41  uhid
+bus              mcelog              tty13  tty42  uinput
+centos_venus     mem                 tty14  tty43  urandom
+There is no device conncected to my pc.
+
+6.Go to /etc directory
+[zhyu1201@venus dev]$ cd /etc
+[zhyu1201@venus etc]$ 
+
+7.Do a long listing; Mention a few files that you have already heard about.
+[zhyu1201@venus etc]$ ls -l
+total 2484
+-rw-r--r--.  1 root   root         16 Jan  2  2015 adjtime
+-rw-r--r--.  1 root   root        841 Jun  7  2013 csh.login
+-rw-r--r--.  1 root   root         21 Jan  2  2015 hostname
+-rw-r--r--.  1 root   root        199 Jan  5  2015 hosts
+-rw-r--r--.  1 root   root     191658 Sep 28 00:42 passwd
+
+8.What is the most used permission? What does it mean?
+r - read
+
+9.Using the cat command, take a look at the profile and login.defs files
+[zhyu1201@venus /etc]$ cat profile
+# /etc/profile
+# System wide environment and startup programs, for login setup
+# Functions and aliases go in /etc/bashrc
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+[zhyu1201@venus /etc]$ cat login.defs
+#
+# Please note that the parameters in this configuration file control the
+# behavior of the tools from the shadow-utils component. None of these
+# tools uses the PAM mechanism, and the utilities that use PAM (such as the
+# passwd command) should therefore be configured elsewhere. Refer to
+# /etc/pam.d/system-auth for more information.
+
+10.Using cat, check the passwd file or similar; look for yourself in the file.
+[zhyu1201@venus /etc]$ cat passwd
+[zhyu1201@venus /etc]$ grep zhyu1201 /etc/passwd
+zhyu1201:x:5791:800:Yuqian Zhang:/home/fa15/316/zhyu1201:/bin/tcsh
+
+11.Type:echo $HOME
+[zhyu1201@venus /etc]$ echo $HOME
+/home/fa15/316/zhyu1201
+
+12. Type:pwd
+[zhyu1201@venus /etc]$ pwd
+/etc
+
+Part C:
+1. Check your default shell using: echo $SHELL
+[zhyu1201@venus ~]$ echo $SHELL
+/bin/bash
+
+2. Use the chsh command and find a list of available shells.
+[zhyu1201@venus ~]$ chsh -l
+/bin/sh
+/bin/bash
+/sbin/nologin
+/usr/bin/sh
+/usr/bin/bash
+/usr/sbin/nologin
+/bin/tcsh
+/bin/csh
+/bin/ksh
+/bin/rksh
+
+3. Change the current shell to a tcsh 
+[zhyu1201@venus ~]$ chsh
+Changing shell for zhyu1201.
+New shell [/bin/bash]:  /bin/tcsh
+Password: 
+Shell changed.
+
+4. Check your new shell. The change will not be listed until the next login.
+Before new login:
+[zhyu1201@venus /etc]$ echo $SHELL
+/bin/bash
+Then logout:
+[zhyu1201@venus /etc]$ logout
+After new login:
+[zhyu1201@venus /etc]$ echo $SHELL
+/bin/tcsh
+
+5. Type ps (process status – gives a lists of running processes). What do you observe?
+[zhyu1201@venus ~]$ ps
+  PID TTY          TIME CMD
+13061 pts/29   00:00:00 tcsh
+13224 pts/29   00:00:00 ps
+
+6. At the shell prompt, type set | more and then press <enter>. What is displayed on your
+screen?
+[zhyu1201@venus ~]$ set|more
+_       ps
+
+addsuffix
+argv    ()
+autolist
+consoletype     pty
+csubstnonl
+cwd     /home/fa15/316/zhyu1201
+dirstack        /home/fa15/316/zhyu1201
+echo_style      both
+edit
+euid    5791
+euser   zhyu1201
+file    /home/fa15/316/zhyu1201/.i18n
+gid     800
+group   underg
+histdup erase
+history 1000
+home    /home/fa15/316/zhyu1201
+killring        30
+loginsh
+owd
+p       /usr/sbin
+--More--
+If I press <Enter>, It will keep show setting detials until the end.
+
+7. Identify and list the settings for the variables shown above.
+user 
+euid
+home
+p
+group
+cwd
+
+8. Use the man command and read about the setenv command.
+[zhyu1201@venus ~]$ man setenv
+SETENV(3)                  Linux Programmer's Manual                 SETENV(3)
+
+NAME
+       setenv - change or add an environment variable
+
+SYNOPSIS
+       #include <stdlib.h>
+
+Part D:
+1. Learn about the ps command using man.
+[zhyu1201@venus ~]$ man ps
+PS(1)                            User Commands                           PS(1)
+NAME
+       ps - report a snapshot of the current processes.
+SYNOPSIS
+       ps [options]
+
+
+2. Give a list of possible states together with their significance. Identify your login shell.
+  D    uninterruptible sleep (usually IO)
+  R    running or runnable (on run queue)
+  S    interruptible sleep (waiting for an event to complete)
+  T    stopped by job control signal
+  t    stopped by debugger during the tracing
+  W    paging (not valid since the 2.6.xx kernel)
+  X    dead (should never be seen)
+  Z    defunct ("zombie") process, terminated but not reaped by its parent
+
+[zhyu1201@venus ~]$ ps h p $$
+13061 pts/29   Ss     0:00 -tcsh
+
+3. Type ps –l and explain the significance of:F, S, UID, PID, PPID, C, PRI, NI, ADDR, SZ, WCHAN, TTY, TIME, CMD fields.
+F:(-l and l flags) Some of the more important F field flags (hexadecimal and additive) 
+S:(-l and l flags) The state of the process or kernel thread
+UID:(-f, -l, and l flags) The user ID of the process owner. The login name is printed under the -f flag.
+PID:(all flags) The process ID of the process.
+PPID:(-f, l, and -l flags) The process ID of the parent process.
+C: (-f, l, and -l flags) CPU utilization of process or thread, incremented each time the system clock ticks and the process or thread is found to be running.
+PRI:(-l and l flags) The priority of the process or kernel thread ; higher numbers mean lower priority.
+NI:(-l and l flags) The nice value; used in calculating priority for the sched other policy.
+ADDER:(-l and l flags) Contains the segment number of the process stack, if normal; if a kernel process, the address of the preprocess data area.
+SZ:(-l and l flags) The size in 1KB units of the core image of the process.
+WCHAN:(l flag) The event on which process is waiting (an address in the system). A symbol is chosen that classifies the address, unless numerical output is requested.
+TTY:(all flags) The controlling workstation for the process.
+TIME:(all flags) The total execution time for the process.
+CMD:(-f, -l, and l flags) Contains the command name. The full command name and its parameters are displayed with the -f flag.
+
+4. Use the top command to monitor the CPU activity in real time. It displays the status of the
+first 15 of the most CPU-intensive task on the system as well as the CPU activity. To stop
+the execution of top enter <ctrl-C>.
+[zhyu1201@venus ~]$ top
+top - 21:31:22 up 142 days, 11:36, 18 users,  load average: 1.11, 1.14, 1.20
+Tasks: 272 total,   2 running, 270 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.6 us,  3.4 sy,  0.0 ni, 93.5 id,  0.6 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  8010280 total,   516848 free,  1580944 used,  5912488 buff/cache
+KiB Swap:  4079612 total,  3499516 free,   580096 used.  4800700 avail Mem 
+
+5. Give the total number of tasks, number of running processes, sleeping processes, stopped
+processes and zombies.
+Total number: 272

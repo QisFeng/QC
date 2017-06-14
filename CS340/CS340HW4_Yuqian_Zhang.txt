@@ -1,0 +1,60 @@
+//CS340 - Homework-4 Yuqian Zhang
+
+Part 1:
+1)Execute:
+date& who; whoami; uname; echo Hello, World&
+Solution:
+[zhyu1201@venus ~]$ date& who; whoami; echo Hello, World&
+[1] 18371
+[2] 18372
+[zhyu1201@venus ~]$ Sat Oct 24 23:07:33 EDT 2015
+(unknown) :0           2015-05-09 09:55 (:0)
+lixi4405 pts/5        2015-10-24 22:00 (pool-100-12-200-192.nycmny.fios.verizon.net)
+life4054 pts/9        2015-10-24 22:11 (cpe-108-176-145-1.nyc.res.rr.com)
+rlaw     pts/13       2015-10-24 14:14 (173.52.123.154)
+shkr2923 pts/15       2015-10-24 16:07 (cpe-69-204-229-153.nyc.res.rr.com)
+haot3847 pts/16       2015-10-24 22:54 (72.80.77.128)
+haot3847 pts/17       2015-10-24 22:34 (72.80.77.128)
+sote2814 pts/19       2015-10-24 22:45 (cpe-67-244-7-250.nyc.res.rr.com)
+life4054 pts/20       2015-10-24 23:01 (cpe-108-176-145-1.nyc.res.rr.com)
+zhyu1201 pts/22       2015-10-24 23:02 (100.38.16.68)
+dali0813 pts/27       2015-10-24 17:18 (pool-70-104-140-5.nycmny.fios.verizon.net)
+zhyu1201
+Hello, World
+
+2)To understand more about the nice command, look at the man page.
+Give the default value for adjustments.
+Solution:
+[zhyu1201@venus ~]$ man nice
+NICE(1)                          User Commands                         NICE(1)
+NAME
+       nice - run a program with modified scheduling priority
+SYNOPSIS
+       nice [OPTION] [COMMAND [ARG]...]
+...
+From the man information:
+       -n, --adjustment=N
+              add integer N to the niceness (default 10)
+Thus, the defalut value for adjustments is 10.
+
+Part B:
+Give an outline of the scheduling algorithms currently used in recent versions of Windows, Unix
+(Linux) and MacOS
+
+
+Operating System	    Preemptive  	Algorithm
+
+Linux kernel before 2.6.0	Yes		Multilevel feedback queue
+Linux kernel 2.6.0–2.6.23	Yes		O(1) scheduler
+Linux kernel after 2.6.23	Yes		Completely Fair Scheduler
+
+Mac OS pre-9			None		Cooperative scheduler
+Mac OS 9			Some		Preemptive scheduler for MP tasks, and cooperative for processes and threads
+Mac OS X			Yes		Multilevel feedback queue
+
+Windows 3.1x			None		Cooperative scheduler
+Windows 95, 98, Me		Half		Preemptive scheduler for 32-bit processes, and cooperative for 16-bit processes
+Windows NT 			Yes		Multilevel feedback queue
+(including 2000, XP, Vista, 7, and Server)
+
+Source:https://en.wikipedia.org/wiki/Scheduling_(computing)

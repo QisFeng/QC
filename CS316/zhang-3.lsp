@@ -1,0 +1,60 @@
+;Solution to Problem 1
+(defun MIN-2 (a b)
+	(if (and (numberp a) (numberp b))
+		(if (<= a b)
+			a
+			b)
+		'ERROR))			
+;Solution to Problem 2
+(defun SAFE-AVG (a b)
+	(if (and (numberp a) (numberp b))
+		(/ (+ a b) 2)
+		nil))				
+;Solution to Problem 3
+(defun ODD-GT-MILLION (x)
+	(if (and (integerp x) (oddp x) (> x 1000000000))
+		T
+		nil))
+;Solution to Problem 4					
+(defun MULTIPLE-MEMBER (x L)
+	(member x (cdr (member x L))))
+;Solution to Problem 5		
+(defun MONTH->INTEGER (x)
+	(cond ((equal x 'JANUARY) 1)
+		  ((equal x 'FEBRUARY) 2)
+		  ((equal x 'MARCH) 3)
+		  ((equal x 'APRIL) 4)
+		  ((equal x 'MAY) 5)
+		  ((equal x 'JUNE) 6)
+		  ((equal x 'JULY) 7)
+		  ((equal x 'AUGUST) 8)
+		  ((equal x 'SEPTEMBER) 9)
+		  ((equal x 'OCTOBER) 10)
+		  ((equal x 'NOVEMBER) 11)
+		  ((equal x 'DECEMBER) 12)
+		  (T 'ERROR)))
+;Solution to Problem 6				
+(defun SCORE->GRADE (s)
+		(cond ((not (numberp s)) nil) 
+			  ((>= s 90) 'A)
+			  ((>= s 87) 'A-)
+			  ((>= s 83) 'B+)
+			  ((>= s 83) 'B)
+			  ((>= s 77) 'B)
+			  ((>= s 73) 'C+)
+			  ((>= s 70) 'C)
+			  ((>= s 60) 'D)
+			  (T 'F)))			
+;Solution to Problem 7				
+(defun GT (x y)
+	(and (numberp x) (numberp y) (> x y)))
+;Solution to Problem 8		
+(defun SAME-SIGN (x y)
+	(and (numberp x) 
+		 (numberp y)
+		 (or (and (> x 0) (> y 0))
+			 (and (< x 0) (< y 0))
+			 (and (= x 0) (= y 0)))))
+;Solution to Problem 9				
+(defun SAFE-DIV (x y)
+	(and (numberp x) (numberp y) (not (zerop y)) (/ x y)))

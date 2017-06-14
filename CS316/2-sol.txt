@@ -1,0 +1,64 @@
+15.(a) (car (cdr (cdr E)))
+   (b) (car (cadr (cadr E))) = (car   (car (cdr   (car (cdr E)) )) )
+   (c) (car (cadr (cadr (car (car E))))) = (car (car (cdr (car (cdr (car (car E)))))))
+
+16.(a) (cons 'a (cons 'b (cons 'x (cons 'd nil))))
+
+   (b) (x d) =                 (cons 'x
+                                     (cons 'd 
+                                           nil))
+       Hence:
+       (b (x d)) = (cons 'b
+                         (cons (cons 'x
+                                     (cons 'd 
+                                           nil))
+                               nil))
+
+       Hence (a (b (x d))) =
+       (cons 'a
+             (cons (cons 'b
+                         (cons (cons 'x
+                                     (cons 'd 
+                                           nil))
+                               nil))
+                   nil))
+
+   (c) (b (x) d) =                  (cons 'b
+                                          (cons (cons 'x nil)
+                                                (cons 'd 
+                                                      nil)))
+       Hence:
+       (a (b (x) d)) =  (cons 'a
+                              (cons (cons 'b
+                                          (cons (cons 'x nil)
+                                                (cons 'd 
+                                                       nil)))
+                                    nil))
+       Hence:
+       (((a (b (x) d)))) =
+           (cons (cons (cons 'a
+                             (cons (cons 'b
+                                         (cons (cons 'x nil)
+                                               (cons 'd 
+                                                     nil)))
+                                   nil))
+                        nil)
+                  nil)
+17. (list (cons (list (caar E) (cadar E))  (cddar E))
+          (cons 'a 
+                (cons 'b (cddr (caddr E)))))
+
+18. (list (cons (caar E) 
+                (cons 'a (cddar E)))
+          (cadadr E)
+          (caddr (caddr E))
+          (cons (caddr (cadr E)) (cddr (caddr E))))
+ 
+19. (list (append (car E) (list (cadadr E))) 
+          (append (cadr E) (cddr (caddr E))))
+
+20. (list (cons 'a (cdar E))
+          (cons (caar E) 
+                (cons (list (cadr (caddr E))
+                            (caddr (caddr E)))
+                      (cdddr (caddr E)))))

@@ -1,0 +1,21 @@
+//CS313 - Homework - Yuqian Zhang
+
+boolean match(int A[], int M,int size){
+	int i = 0,j = size-1,sum;
+	while(i<j){
+		sum=A[i]+A[j];
+		if (sum==M) return true;
+		else if (sum<M) i++;
+		else j--;
+	}
+	return false;
+}
+
+Consider the worst case time and count comparisons:
+Worst case is that sum is not in the list.
+Each iteration of the loop has two comparisons:
+Is i<j?
+Is sum==M?
+We have 2(n-1) comparisons total for executing the while loop.
+And 1 more comparision to exit the while loop when i==j.
+Total runtime is 2(n-1)+1 = 2n - 1 is O(n).

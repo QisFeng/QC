@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!-- saved from url=(0053)http://proto.cs.qc.cuny.edu/cs715/network_layers.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>ISO/OSI Network Model</title>
+
+<link rev="made" href="mailto:webmaster@www.uwsg.indiana.edu"><!-- $Id: network_layers.html,v 1.4 1996/06/03 21:26:29 uthuppur Exp $ --><!--#config errmsg="" --></head>
+
+<body>
+<!--#include virtual="/usail/include/header.inc" -->
+<div align="center"><small>
+<!--#include virtual="/usail/include/navbar-top.inc" -->
+<br clear="all">
+
+<a href="http://www.ussg.iu.edu/usail/network/nfs/overview.html">
+<img src="./ISO_OSI Network Model_files/prev.gif" alt="[EdCert previous]" align="middle"></a>
+<img src="./ISO_OSI Network Model_files/next.gif" alt="[EdCert next]" align="middle">
+<img src="./ISO_OSI Network Model_files/top.gif" alt="[EdCert top]" align="middle">
+
+</small></div>
+<hr>
+
+
+<h1>ISO/OSI Network Model</h1>
+
+<p>
+The standard model for networking protocols and distributed applications is
+the International Standard Organization's Open System Interconnect (ISO/OSI)
+model. It defines seven network layers.
+</p><dl>
+<dt>Layer 1 - Physical
+</dt><dd><p>Physical layer defines the cable or physical medium itself, e.g., 
+thinnet, thicknet, unshielded twisted pairs (UTP).  All media are functionally
+equivalent.  The main difference is in convenience and cost of installation
+and maintenance.  Converters from one media to another operate at this level.
+</p>
+</dd><dt>Layer 2 - Data Link
+</dt><dd><p>Data Link layer defines the format of data on the network.  A network
+data frame, aka packet, includes checksum, source and destination address,
+and data.  The largest packet that can be sent through a data link layer
+defines the Maximum Transmission Unit (MTU). The data link layer handles
+the physical and logical connections to the packet's destination, using a
+network interface.  A host connected to an Ethernet would have an Ethernet
+interface to handle connections to the outside world, and a loopback
+interface to send packets to itself.
+</p><p>
+Ethernet addresses a host using a unique, 48-bit address called its Ethernet
+address or Media Access Control (MAC) address.  MAC addresses are usually
+represented as six colon-separated pairs of hex digits, e.g., 8:0:20:11:ac:85.
+This number is unique and is associated with a particular Ethernet device. 
+Hosts with multiple network interfaces should use  the same MAC address on
+each.  The data link layer's protocol-specific header specifies the MAC 
+address of the packet's source and destination.  When a packet is sent
+to all hosts (broadcast), a special MAC address (ff:ff:ff:ff:ff:ff) is used.
+</p>
+</dd><dt>Layer 3 - Network
+</dt><dd><p>NFS uses Internetwork Protocol (IP) as its network layer interface.
+IP is responsible for routing, directing datagrams from one network to
+another.  The network layer may have to break large datagrams, larger than MTU,
+into smaller packets and host receiving the packet will have to reassemble
+the fragmented datagram.  The Internetwork Protocol identifies each host
+with a 32-bit IP address.  IP addresses are written as four dot-separated
+decimal numbers between 0 and 255, e.g., 129.79.16.40. The leading 1-3 
+bytes of the IP identify the network and the remaining bytes identifies
+the host on that network.  The network portion of the IP is assigned by
+InterNIC Registration Services, under the contract to the National Science
+Foundation, and the host portion of the IP is assigned by the local network
+administrators, locally by noc@indiana.edu.  For large sites, usually 
+subnetted like ours, the first two bytes represents the network portion
+of the IP, and the third and fourth bytes identify the subnet and host 
+respectively.
+</p><p>Even though IP packets are addressed using IP addresses, hardware 
+addresses must be used to actually transport data from one host to another.
+The Address Resolution Protocol (ARP) is used to map the IP address to
+it hardware address.
+</p>
+</dd><dt>Layer 4 - Transport
+</dt><dd><p>Transport layer subdivides user-buffer into network-buffer sized
+datagrams and enforces desired transmission control.  Two transport 
+protocols, Transmission Control Protocol (TCP) and User Datagram Protocol
+(UDP), sits at the transport layer.  Reliability and speed are the primary
+difference between these two protocols.  TCP establishes connections
+between two hosts on the network through 'sockets' which are determined
+by the IP address and port number.  TCP keeps track of the packet
+delivery order and the packets that must be resent.  Maintaining this 
+information for each connection makes TCP a stateful protocol.
+UDP on the other hand provides a low overhead transmission service, but
+with less error checking.  NFS is built on top of UDP because of its speed
+and statelessness.  Statelessness simplifies the crash recovery.
+</p>
+</dd><dt>Layer 5 - Session
+</dt><dd><p>The session protocol defines the format of the data sent over the
+connections.  The NFS uses the Remote Procedure Call (RPC) for its session
+protocol.  RPC may be built on either TCP or UDP.  Login sessions uses TCP
+whereas NFS and broadcast use UDP.
+</p>
+</dd><dt>Layer 6 - Presentation
+</dt><dd><p>External Data Representation (XDR) sits at the presentation level.
+It converts local representation of data to its canonical form and vice versa.
+The canonical uses a standard byte ordering and structure packing convention, 
+independent of the host. 
+</p>
+</dd><dt>Layer 7 - Application
+</dt><dd><p>Provides network services to the end-users.  Mail, ftp, telnet, DNS,
+NIS, NFS are examples of network applications.
+</p>
+</dd></dl>
+
+<h1>TCP/IP Network Model</h1>
+
+<p>
+Although the OSI model is widely used and often cited as the standard,
+TCP/IP protocol has been used by most Unix workstation vendors.  TCP/IP
+is designed around a  simple four-layer scheme.  It does omit some 
+features found under the OSI model.  Also it combines the features of some
+adjacent OSI layers and splits other layers apart.  The four network layers
+defined by TCP/IP model are as follows.
+
+</p><dl>
+<dt>Layer 1 - Link
+</dt><dd><p>This layer defines the network hardware and device drivers.
+</p>
+</dd><dt>Layer 2 - Network
+</dt><dd><p>This layer is used for basic communication, addressing and routing.
+TCP/IP uses IP and ICMP protocols at the network layer.
+</p>
+</dd><dt>Layer 3 - Transport
+</dt><dd><p>Handles communication among programs on a network. TCP and UDP falls
+within this layer.
+</p>
+</dd><dt>Layer 4 - Application
+</dt><dd><p>End-user applications reside at this layer.  Commonly used applications
+include NFS, DNS, arp, rlogin, talk, ftp, ntp and traceroute.
+</p></dd></dl>
+
+
+<p></p><hr>
+<div align="center"><small>
+<br clear="all">
+<!--#include virtual="/usail/include/navbar-bot.inc" -->
+<br clear="all">
+
+<a href="http://www.ussg.iu.edu/usail/network/nfs/overview.html">
+<img src="./ISO_OSI Network Model_files/prev.gif" alt="[EdCert previous]" align="middle"></a>
+<img src="./ISO_OSI Network Model_files/next.gif" alt="[EdCert next]" align="middle">
+<img src="./ISO_OSI Network Model_files/top.gif" alt="[EdCert top]" align="middle">
+
+</small></div>
+<!--#include virtual="/usail/include/footer.inc" -->
+</body></html>
